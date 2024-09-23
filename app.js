@@ -1,3 +1,4 @@
+require("dotenv").config(); // to load the .env file into the process.env object\
 const express = require("express");
 require("express-async-errors");
 
@@ -6,7 +7,6 @@ const app = express();
 app.set("view engine", "ejs");
 app.use(require("body-parser").urlencoded({ extended: true }));
 
-require("dotenv").config(); // to load the .env file into the process.env object
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
 const url = process.env.MONGO_URI;
