@@ -18,8 +18,6 @@ app.set("view engine", "ejs");
 //Security Packages
 app.use(helmet());
 
-app.use(xss());
-
 const limiter = rateLimit({
     windowMs: 15 * 60 * 1000, 
     max: 100, 
@@ -29,7 +27,8 @@ app.use(limiter);
 
 // Body parser
 app.use(express.urlencoded({ extended: true }));
-
+//now it replaces the part of script tag if somebody tries to send it via form
+app.use(xss());
 // Cookie Parser
 app.use(cookieParser(process.env.SESSION_SECRET));
 
